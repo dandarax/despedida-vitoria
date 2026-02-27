@@ -1,0 +1,151 @@
+:root {
+    --azul-marinho: #001f3f;
+    --off-white: #f8f8f2;
+    --prata: #c0c0c0;
+}
+
+html, body {
+    background-color: var(--azul-marinho) !important;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--off-white) !important;
+}
+
+.galeria-topo {
+    display: flex;
+    width: 100%;
+    height: 35vh;
+    gap: 5px;
+    background-color: var(--azul-marinho);
+}
+
+.foto-topo {
+    width: 25%; 
+    height: 100%;
+    object-fit: cover;
+}
+
+.conteudo {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--off-white) !important;
+    line-height: 1.1;
+}
+
+.divisor-prata {
+    height: 1px;
+    width: 250px;
+    background: linear-gradient(90deg, transparent, var(--prata), transparent);
+    margin: 20px auto;
+}
+
+.declaracao-box {
+    margin: 40px auto;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    max-width: 95%;
+}
+
+.foto-meio {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    border: 1px solid var(--prata);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 50px 0;
+}
+
+h2, h3 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 30px;
+}
+
+#timer {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--prata) !important;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 30px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--prata);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    background: #000;
+}
+
+.frase-final {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    color: var(--prata);
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+.spotify-container {
+    margin: 30px auto;
+    width: 100%;
+    max-width: 450px;
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 2.8rem; }
+    .galeria-topo { height: 20vh; }
+}
+.video-container {
+    margin: 30px auto;
+    max-width: 560px; /* Largura máxima do vídeo */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.video-container iframe, .video-container video {
+    width: 100%;
+}
+/* Estilo unificado para blocos de texto */
+.declaracao-box, .sessao-reflexao {
+    margin: 40px auto;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify; /* Mantém o alinhamento justificado que você definiu */
+    max-width: 95%;
+    color: var(--off-white) !important;
+}
+
+/* Garante que o parágrafo interno herde a formatação */
+.texto-final-amor {
+    margin: 0;
+    font-style: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: inherit;
+}
+
+.texto-final-amor::after {
+    content: " ❤️";
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buen Viaje, Vitória!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-argentina: #74acdf;
+            --dourado-sol: #f6b40e;
+            --off-white: #f8f8f2;
+            --fundo-escuro: #1a1a1a;
+        }
+
+        html, body {
+            background-color: var(--fundo-escuro) !important;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--off-white) !important;
+            overflow-x: hidden;
+        }
+
+        /* CLASSES DE IDIOMA */
+        .idioma-pt {
+            font-family: 'Poppins', sans-serif;
+            display: block;
+        }
+
+        .idioma-es {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--dourado-sol);
+            display: block;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .conteudo {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .sessao-titulo {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--azul-argentina) !important;
+            line-height: 1.1;
+        }
+
+        .subtitulo {
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: var(--dourado-sol);
+            margin: 0;
+        }
+
+        /* ESTRUTURA COMUM DOS CARDS */
+        .card-foto {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .card-foto.virado {
+            transform: rotateY(180deg);
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .frente img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .verso {
+            background-color: var(--azul-argentina);
+            color: var(--fundo-escuro);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* GALERIA TOPO */
+        .galeria-topo {
+            display: flex;
+            width: 100%;
+            height: 35vh;
+            gap: 10px;
+            margin-bottom: 40px;
+            perspective: 1000px;
+        }
+
+        .galeria-topo .card-foto {
+            width: 25%;
+            height: 100%;
+        }
+
+        .galeria-topo .verso {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* CARD DO MEIO (DESTAQUE) */
+        .container-destaque {
+            perspective: 1000px;
+            margin: 40px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 550px;
+        }
+
+        .card-destaque {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--azul-argentina);
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .card-destaque .verso {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            background-color: var(--off-white);
+            color: var(--fundo-escuro);
+            border: 2px solid var(--azul-argentina);
+        }
+
+        .divisor-argentina {
+            height: 2px;
+            width: 150px;
+            background: linear-gradient(90deg, transparent, var(--azul-argentina), var(--dourado-sol), var(--azul-argentina), transparent);
+            margin: 30px auto;
+        }
+
+        .texto-box {
+            margin: 40px auto;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            background: rgba(116, 172, 223, 0.05);
+            padding: 25px;
+            border-left: 3px solid var(--azul-argentina);
+            border-radius: 5px;
+        }
+
+        h2 { color: var(--azul-argentina); text-transform: uppercase; letter-spacing: 2px; font-size: 1.5rem; margin-bottom: 20px; }
+
+        .spotify-container { margin: 30px auto; max-width: 450px; }
+
+        .timer-estilo { font-size: 1.8rem; color: var(--dourado-sol); font-weight: 300; margin: 10px 0 40px 0; }
+
+        .video-container {
+            width: 100%; max-width: 560px; margin: 30px auto;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--azul-argentina);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .galeria-topo { height: 25vh; }
+            .container-destaque { height: 300px; }
+            .galeria-topo .verso { font-size: 0.7rem; padding: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="conteudo">
+        <section class="sessao-titulo">
+            <h1>¡Buen Viaje, Vitória!</h1>
+            <p class="subtitulo">
+                <span class="idioma-pt">🇧🇷 Daqui até a Argentina 🇦🇷</span>
+                <span class="idioma-es">🇧🇷 De acá hasta Argentina 🇦🇷</span>
+            </p>
+        </section>
+        
+        <div class="galeria-topo">
+            <div class="card-foto" onclick="virarCard(this)">
+                <div class="face frente"><img src="threedecember.jpg"></div>
+                <div class="face verso">Nosso tão especial primeiro 03/12.</div>
+            </div>
+            <div class="card-foto" onclick="virarCard(this)">
+                <div class="face frente"><img src="coracapdedos.webp"></div>
+                <div class="face verso">Minha outra metade do coração.</div>
+            </div>
+            <div class="card-foto" onclick="virarCard(this)">
+                <div class="face frente"><img src="cria.jpg"></div>
+                <div class="face verso">Crias do Elisa Bessa.</div>
+            </div>
+            <div class="card-foto" onclick="virarCard(this)">
+                <div class="face frente"><img src="copa.jpg"></div>
+                <div class="face verso">Nosso 03/12 em 05/12 com direito a goleada do Brasil na Coreia do Sul.</div>
+            </div>
+        </div>
+
+        <div class="divisor-argentina"></div>
+
+        <section class="texto-box">
+            <p>
+                Vitória, você deve saber o quanto é especial para mim, mas não faz ideia do quão especial realmente é. Eu te amo muito.
+                Sentirei muita saudade, mas entendo que você está indo seguir o seu sonho. Sei que você se tornará uma profissional excelente e dará muito orgulho. Meu amor por você atravessará fronteiras (literalmente!); estarei sempre torcendo pelo seu bem e vibrarei com cada vitória da minha Vitória.
+            </p>
+        </section>
+
+        <div class="container-destaque">
+            <div class="card-foto card-destaque" onclick="virarCard(this)">
+                <div class="face frente"><img src="abraco.jpg"></div>
+                <div class="face verso">
+Seu abraço foi minha casa por muito tempo. Cada vez que nos abraçamos, eu retorno para aquele lugar que me reconfortou, me acalmou e me tranquilizou por tanto tempo, principalmente durante a pandemia.
+​Agora, meu 'abraço casa' estará a muitos quilômetros de distância de mi, mas, assim como das outras vezes, ele nunca deixará de ser meu abrigo. Porque você é o meu lar e sempre estará no meu coração; independentemente do país, da distância ou de qualquer outro empecilho, sempre será você. </div>
+            </div>
+        </div>
+
+        <section class="sessao-musica">
+            <h2>
+                <span class="idioma-pt">Tua música do momento</span>
+                <span class="idioma-es">Tu canción del momento</span>
+            </h2> 
+            <div class="spotify-container">
+                <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/track/0oaY19dUwZimIgzn3ZZLZO?utm_source=generator" 
+                    width="100%" height="152" frameBorder="0" allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div> 
+        </section>
+
+        <section class="sessao-final">
+            <h2>
+                <span class="idioma-pt">Nossa despedida</span>
+                <span class="idioma-es">Nuestra despedida</span>
+            </h2>
+            <div id="timer" class="timer-estilo">Calculando...</div>
+        </section> 
+
+        <section class="sessao-video">
+            <h2>
+                <span class="idioma-pt">Recadinho da Danda</span>
+                <span class="idioma-es">Un mensajito de Danda</span>
+            </h2>
+            <div class="video-container">
+                <video width="100%" controls>
+                    <source src="recado.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+            </div>
+        </section>
+
+        <p style="font-style: italic; color: var(--azul-argentina); margin-top: 40px; font-size: 1.2rem;">
+            <span class="idioma-pt">Tória, você sabe que eu te amo muito e de todo o meu coração. Você me ensinou muitas coisas: me ouviu, me aconselhou, me abraçou e esteve comigo nos meus melhores e piores momentos. Serei eternamente grata por todo esse carinho que você tem por mim, e pode ter certeza de que a reciprocidade é total da minha parte.
+ Estou sempre aqui torcendo por você. A sua vitória é a minha, e cada conquista será comemorada por mim aqui também, mesmo a 5.235 km de distância. Eu te amo para sempre!✈️</span>
+            <span class="idioma-es">Tória, sabés que te amo muchísimo e con todo mi corazón. Me enseñaste muchas cosas: me escuchaste, me aconsejaste, me abrazaste y estuviste conmigo en mis mejores y peores momentos. Estaré eternamente agradecida por todo ese cariño que tenés por mí, y podés estar segura de que la reciprocidad de mi parte es total.
+ Siempre estoy acá hinchando por vos. Tu victoria es la mía, y cada conquista la voy a celebrar desde acá también, aunque estemos a 5.235 km de distancia. ¡Te amo para siempre!🇦🇷</span>
+        </p>
+
+        <div class="divisor-argentina"></div>
+        <section class="sessao-reencontro">
+            <h2>
+                <span class="idioma-pt">Nosso Reencontro</span>
+                <span class="idioma-es">Nuestro Reencuentro</span>
+            </h2>
+            <div id="timer-reencontro" class="timer-estilo">Calculando...</div>
+        </section>
+
+    </main>
+
+    <script>
+        function virarCard(elemento) {
+            elemento.classList.toggle('virado');
+        }
+
+        // --- DATAS (Ano, Mês-1, Dia) ---
+        const dataDespedida = new Date(2026, 02, 03); // 03 de Março de 2026
+        const dataReencontro = new Date(2032, 11, 11); // EXEMPLO: 15 de Julho de 2026 (Mês 06 no JS)
+
+        function calcularTempo(dataAlvo, idElemento, mensagemFinal) {
+            const agora = new Date();
+            const diff = dataAlvo - agora;
+            
+            if (diff <= 0) {
+                document.getElementById(idElemento).innerText = mensagemFinal;
+                return;
+            }
+            
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / 1000 / 60) % 60);
+            
+            document.getElementById(idElemento).innerText = `${dias}d ${horas}h ${minutos}m`;
+        }
+
+        function atualizarTodosContadores() {
+            calcularTempo(dataDespedida, 'timer', "¡Llegó el día! 🇦🇷");
+            calcularTempo(dataReencontro, 'timer-reencontro', "¡Finalmente juntas de nuevo! ❤️");
+        }
+
+        setInterval(atualizarTodosContadores, 1000);
+        atualizarTodosContadores();
+    </script>
+</body>
+</html>
